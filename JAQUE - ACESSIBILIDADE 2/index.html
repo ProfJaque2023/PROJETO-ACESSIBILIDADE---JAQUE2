@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Professora Jaque – Aulas Gratuitas de Tear de Pregos</title>
+  <meta name="description" content="Aprenda tear de pregos com aulas gratuitas da Professora Jaque. Técnicas artesanais como ponto canelado, zigue-zague e barra inglesa.">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --roxo-principal: #6f42c1;
+      --roxo-claro: #9d7aff;
+      --roxo-escuro: #4d2a9e;
+      --bege: #f8f5f2;
+      --cinza: #4a4a4a;
+      --cinza-claro: #6c757d;
+    }
+    
+    body {
+      font-family: 'Raleway', sans-serif;
+      color: var(--cinza);
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+    
+    /* Estilos para o botão de acessibilidade */
+    .accessibility-tool {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+    
+    .accessibility-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--roxo-principal);
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .accessibility-btn:hover, .accessibility-btn:focus {
+      background-color: var(--roxo-escuro);
+      transform: scale(1.1);
+    }
+    
+    .accessibility-panel {
+      position: absolute;
+      bottom: 60px;
+      right: 0;
+      width: 250px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      padding: 15px;
+      display: none;
+    }
+    
+    .accessibility-panel.show {
+      display: block;
+    }
+    
+    .accessibility-option {
+      margin-bottom: 10px;
+    }
+    
+    .accessibility-option button {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      background-color: var(--bege);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    
+    .accessibility-option button:hover {
+      background-color: #e9e9e9;
+    }
+    
+    /* Estilos para as opções de acessibilidade */
+    .high-contrast {
+      background-color: #000 !important;
+      color: #fff !important;
+    }
+    
+    .high-contrast .btn-primary,
+    .high-contrast .accessibility-btn {
+      background-color: #fff !important;
+      color: #000 !important;
+      border: 2px solid #000 !important;
+    }
+    
+    .high-contrast .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)) !important;
+    }
+    
+    .inverted-colors {
+      filter: invert(100%);
+    }
+    
+    .bigger-text {
+      font-size: 1.2em !important;
+    }
+    
+    .bigger-text h1, .bigger-text h2, .bigger-text h3, .bigger-text h4 {
+      font-size: 1.3em !important;
+    }
+    
+    .letter-spacing {
+      letter-spacing: 1.5px !important;
+    }
+    
+    .line-height {
+      line-height: 2 !important;
+    }
+    
+    .grayscale {
+      filter: grayscale(100%);
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    
+    header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .hero {
+      background: linear-gradient(rgba(111, 66, 193, 0.8), rgba(111, 66, 193, 0.9)), url('img/hero-background.jpg') no-repeat center/cover;
+      color: white;
+      padding: 120px 0;
+      text-align: center;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    .hero .lead {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .btn-primary {
+      background-color: var(--roxo-principal);
+      border: none;
+      padding: 12px 24px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover, .btn-primary:focus {
+      background-color: var(--roxo-escuro);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .btn-ponto {
+      margin: .5rem;
+      border-radius: 50px;
+    }
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .section-title:after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--roxo-principal);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+    
+    #info-ponto {
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bege);
+      border: none !important;
+      border-radius: 8px;
+    }
+    
+    .gallery img {
+      transition: all 0.3s ease;
+      border-radius: 8px !important;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .gallery img:hover, .gallery img:focus {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    footer {
+      background-color: var(--cinza);
+      color: white;
+      padding: 3rem 0;
+    }
+    
+    .social-icon {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover, .social-icon:focus {
+      color: var(--roxo-claro);
+      transform: translateY(-3px);
+    }
+    
+    .nav-link {
+      color: var(--cinza);
+      font-weight: 600;
+      margin: 0 10px;
+      position: relative;
+    }
+    
+    .nav-link:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--roxo-principal);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover:after, .nav-link:focus:after {
+      width: 100%;
+    }
+    
+    .nav-link:hover, .nav-link:focus {
+      color: var(--roxo-principal);
+    }
+    
+    form {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    input, textarea {
+      border-radius: 8px !important;
+      padding: 12px !important;
+      border: 1px solid #ddd !important;
+    }
+    
+    input:focus, textarea:focus {
+      border-color: var(--roxo-claro) !important;
+      box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.25) !important;
+      outline: none;
+    }
+    
+    .focus-visible {
+      outline: 3px solid var(--roxo-claro);
+      outline-offset: 3px;
+    }
+    
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--roxo-principal);
+      color: white;
+      padding: 8px;
+      z-index: 100;
+      transition: top 0.3s;
+    }
+    
+    .skip-link:focus {
+      top: 0;
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        padding: 80px 0;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero .lead {
+        font-size: 1.1rem;
+      }
+      
+      .accessibility-panel {
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Botão de Acessibilidade -->
+  <div class="accessibility-tool">
+    <button class="accessibility-btn" aria-label="Ferramentas de Acessibilidade" id="accessibilityBtn">
+      <i class="bi bi-universal-access"></i>
+    </button>
+    <div class="accessibility-panel" id="accessibilityPanel">
+      <div class="accessibility-option">
+        <button onclick="toggleHighContrast()">
+          <i class="bi bi-brightness-high"></i> Alto Contraste
+        </button>
+      </div>
+      <div class="accessibility-option">
+        <button onclick="toggleInvertedColors()">
+          <i class="bi bi-contrast"></i> Cores Invertidas
+        </button>
+      </div>
+      <div class="accessibility-option">
+        <button onclick="toggleBiggerText()">
+          <i class="bi bi-textarea-t"></i> Texto Maior
+        </button>
+      </div>
+      <div class="accessibility-option">
+        <button onclick="toggleLetterSpacing()">
+          <i class="bi bi-fonts"></i> Espaçamento de Letras
+        </button>
+      </div>
+      <div class="accessibility-option">
+        <button onclick="toggleLineHeight()">
+          <i class="bi bi-text-paragraph"></i> Espaçamento entre Linhas
+        </button>
+      </div>
+      <div class="accessibility-option">
+        <button onclick="toggleGrayscale()">
+          <i class="bi bi-circle-half"></i> Escala de Cinza
+        </button>
+      </div>
+      <div class="accessibility-option">
+        <button onclick="resetAccessibility()">
+          <i class="bi bi-arrow-counterclockwise"></i> Redefinir
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+  
+  <header class="p-3">
+    <nav class="container d-flex justify-content-between align-items-center">
+      <h2 class="fw-bold m-0" style="color: var(--roxo-principal);">Professora Jaque</h2>
+      <ul class="nav d-none d-md-flex">
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#como-funciona">Como Funciona</a></li>
+        <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+      </ul>
+      <button class="btn btn-primary d-md-none" aria-expanded="false" aria-label="Menu" aria-controls="mobile-menu">
+        <i class="bi bi-list"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section id="sobre" class="hero" aria-labelledby="sobre-heading">
+      <div class="container">
+        <h1 id="sobre-heading" class="fw-bold">Aprenda Tear de Pregos com a Professora Jaque</h1>
+        <p class="lead">"Olá! Sou a Professora Jaque, movida por uma vontade imensa de ensinar com carinho e paixão. Adoro ver pessoas determinadas florescerem na arte do tear de pregos. Estou aqui para conduzir com amor e inspirar cada ponto com muita dedicação."</p>
+        <a href="#contato" class="btn btn-primary btn-lg mt-3">Quero Aprender!</a>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="container my-5 py-5" aria-labelledby="como-funciona-heading">
+      <h2 id="como-funciona-heading" class="section-title">Como Funciona</h2>
+      <p class="text-center mb-5">O tear de pregos é uma técnica artesanal simples e terapêutica. Veja os pontos que você aprenderá:</p>
+      <div class="text-center">
+        <button class="btn btn-primary btn-ponto" onclick="mostrarInfo('canelado')" aria-label="Saiba mais sobre o Ponto Canelado">Ponto Canelado</button>
+        <button class="btn btn-primary btn-ponto" onclick="mostrarInfo('ziguezague')" aria-label="Saiba mais sobre o Ponto Zigue-zague">Ponto Zigue-zague</button>
+        <button class="btn btn-primary btn-ponto" onclick="mostrarInfo('barra-inglesa')" aria-label="Saiba mais sobre a Barra Inglesa">Barra Inglesa</button>
+        <button class="btn btn-primary btn-ponto" onclick="mostrarInfo('fantasia')" aria-label="Saiba mais sobre o Tecido Fantasia">Tecido Fantasia</button>
+      </div>
+      <div id="info-ponto" class="mt-4 p-4" aria-live="polite">
+        <em class="text-center d-block">Escolha um ponto para saber mais.</em>
+      </div>
+      
+      <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center">
+              <i class="bi bi-heart-fill text-danger fs-1 mb-3" aria-hidden="true"></i>
+              <h3>Aprenda com Amor</h3>
+              <p>Método didático e paciente para você aprender no seu ritmo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center">
+              <i class="bi bi-people-fill text-primary fs-1 mb-3" aria-hidden="true"></i>
+              <h3>Comunidade</h3>
+              <p>Participe do nosso grupo exclusivo para tirar dúvidas e compartilhar projetos.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body text-center">
+              <i class="bi bi-cash-coin text-success fs-1 mb-3" aria-hidden="true"></i>
+              <h3>Totalmente Grátis</h3>
+              <p>Aulas gratuitas para você começar seu projeto hoje mesmo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="container-fluid my-5 py-5 bg-light" aria-labelledby="galeria-heading">
+      <div class="container">
+        <h2 id="galeria-heading" class="section-title">GALERIA DE IMAGENS DE PONTOS</h2>
+        <p class="text-center mb-5">Confira alguns dos trabalhos feitos por alunos e pela professora</p>
+        <div class="row gallery g-3">
+          <div class="col-md-6 col-lg-3">
+            <figure>
+              <img src="IMG/PONTO CANELADO.png" alt="Cachecol em ponto canelado, mostrando textura uniforme em tons de roxo" class="img-fluid rounded">
+              <figcaption class="text-center mt-2">
+                <h3 class="h5 mt-2">Ponto Canelado</h3>
+                <small class="text-muted">IMAGEM DO GOOGLE</small>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <figure>
+              <img src="IMG/PONTO ZIGUE-ZAGUE .png" alt="Cachecol em zigue-zague, mostrando padrão diagonal em tons de azul" class="img-fluid rounded">
+              <figcaption class="text-center mt-2">
+                <h3 class="h5 mt-2">Zigue-Zague</h3>
+                <small class="text-muted">IMAGEM DO GOOGLE</small>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <figure>
+              <img src="IMG/PONTO PANAL.png" alt="Cachecol em barra panal, mostrando padrão hexagonal em tons de verde" class="img-fluid rounded">
+              <figcaption class="text-center mt-2">
+                <h3 class="h5 mt-2">Barra PANAL</h3>
+                <small class="text-muted">IMAGEM DO GOOGLE</small>
+              </figcaption>
+            </figure>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <figure>
+              <img src="IMG/PONTO PERSA.png" alt="Cachecol em ponto persa, mostrando padrão complexo em tons de vermelho" class="img-fluid rounded">
+              <figcaption class="text-center mt-2">
+                <h3 class="h5 mt-2">PERSA</h3>
+                <small class="text-muted">IMAGEM DO GOOGLE</small>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="container my-5 py-5" aria-labelledby="contato-heading">
+      <h2 id="contato-heading" class="section-title">Inscreva-se nas Aulas</h2>
+      <p class="text-center mb-5">Preencha o formulário abaixo para receber acesso às aulas gratuitas</p>
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <form id="form-contato">
+            <div class="mb-3">
+              <label for="nome" class="form-label">Nome</label>
+              <input type="text" id="nome" class="form-control" placeholder="Seu nome completo" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" placeholder="Seu e‑mail" required>
+            </div>
+            <div class="mb-3">
+              <label for="mensagem" class="form-label">Mensagem</label>
+              <textarea id="mensagem" class="form-control" rows="4" placeholder="Conte um pouco sobre seu interesse no tear de pregos"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill mt-3">Quero me Inscrever</button>
+          </form>
+          <div id="thank-you" class="alert alert-success mt-3 d-none text-center" role="alert" aria-live="polite">
+            <i class="bi bi-check-circle-fill me-2" aria-hidden="true"></i> Obrigada por se inscrever! Entrarei em contato em breve com os detalhes das aulas.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center p-4">
+    <div class="container">
+      <h2 class="h3 mb-4">Professora Jaque</h2>
+      <p class="mb-4">Aprenda a arte do tear de pregos de forma simples e divertida</p>
+      <div class="mb-4">
+        <a href="#" class="social-icon" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+        <a href="#" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="social-icon" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+        <a href="#" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+      </div>
+      <p class="small text-muted m-0">© 2023 Professora Jaque - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <script>
+    // Função para melhorar a acessibilidade do foco
+    function handleFirstTab(e) {
+      if (e.key === 'Tab') {
+        document.body.classList.add('user-is-tabbing');
+        window.removeEventListener('keydown', handleFirstTab);
+      }
+    }
+    
+    window.addEventListener('keydown', handleFirstTab);
+    
+    // Adiciona classe para estilizar o foco apenas para navegação por teclado
+    document.addEventListener('focus', function(e) {
+      if (document.body.classList.contains('user-is-tabbing')) {
+        e.target.classList.add('focus-visible');
+      }
+    }, true);
+    
+    document.addEventListener('blur', function(e) {
+      e.target.classList.remove('focus-visible');
+    }, true);
+    
+    function mostrarInfo(tipo) {
+      const info = {
+        'canelado': 'O ponto canelado cria uma textura clássica, ideal para cachecóis elegantes. É perfeito para iniciantes e resulta em peças com ótimo caimento.',
+        'ziguezague': 'O ponto zigue-zague traz movimento e dinamismo às peças. Excelente para quem quer dar um toque moderno aos trabalhos.',
+        'barra-inglesa': 'A barra inglesa forma um desenho firme e sofisticado, ótimo para detalhes em cachecóis e outras peças.',
+        'fantasia': 'O tecido fantasia oferece visuais criativos e únicos a cada carreira, permitindo misturar cores e texturas.'
+      };
+      document.getElementById('info-ponto').innerHTML = `<p class="m-0 text-center">${info[tipo] || 'Escolha um ponto para ver sua descrição.'}</p>`;
+      
+      // Foco no conteúdo atualizado para leitores de tela
+      document.getElementById('info-ponto').setAttribute('tabindex', '-1');
+      document.getElementById('info-ponto').focus();
+    }
+    
+    document.getElementById('form-contato').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('thank-you').classList.remove('d-none');
+      this.reset();
+      setTimeout(() => {
+        document.getElementById('thank-you').classList.add('d-none');
+      }, 5000);
+      
+      // Foco na mensagem de sucesso para leitores de tela
+      document.getElementById('thank-you').setAttribute('tabindex', '-1');
+      document.getElementById('thank-you').focus();
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.setAttribute('tabindex', '-1');
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+        target.focus();
+      });
+    });
+    
+    // Menu mobile (simplificado para exemplo)
+    const menuButton = document.querySelector('.btn-primary.d-md-none');
+    menuButton.addEventListener('click', function() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !expanded);
+      // Aqui você implementaria a lógica para mostrar/esconder o menu
+    });
+    
+    // Funções para a ferramenta de acessibilidade
+    const accessibilityBtn = document.getElementById('accessibilityBtn');
+    const accessibilityPanel = document.getElementById('accessibilityPanel');
+    
+    accessibilityBtn.addEventListener('click', function() {
+      accessibilityPanel.classList.toggle('show');
+    });
+    
+    // Fechar o painel quando clicar fora
+    document.addEventListener('click', function(e) {
+      if (!accessibilityBtn.contains(e.target) && !accessibilityPanel.contains(e.target)) {
+        accessibilityPanel.classList.remove('show');
+      }
+    });
+    
+    function toggleHighContrast() {
+      document.body.classList.toggle('high-contrast');
+      localStorage.setItem('highContrast', document.body.classList.contains('high-contrast'));
+    }
+    
+    function toggleInvertedColors() {
+      document.body.classList.toggle('inverted-colors');
+      localStorage.setItem('invertedColors', document.body.classList.contains('inverted-colors'));
+    }
+    
+    function toggleBiggerText() {
+      document.body.classList.toggle('bigger-text');
+      localStorage.setItem('biggerText', document.body.classList.contains('bigger-text'));
+    }
+    
+    function toggleLetterSpacing() {
+      document.body.classList.toggle('letter-spacing');
+      localStorage.setItem('letterSpacing', document.body.classList.contains('letter-spacing'));
+    }
+    
+    function toggleLineHeight() {
+      document.body.classList.toggle('line-height');
+      localStorage.setItem('lineHeight', document.body.classList.contains('line-height'));
+    }
+    
+    function toggleGrayscale() {
+      document.body.classList.toggle('grayscale');
+      localStorage.setItem('grayscale', document.body.classList.contains('grayscale'));
+    }
+    
+    function resetAccessibility() {
+      document.body.classList.remove('high-contrast', 'inverted-colors', 'bigger-text', 'letter-spacing', 'line-height', 'grayscale');
+      localStorage.removeItem('highContrast');
+      localStorage.removeItem('invertedColors');
+      localStorage.removeItem('biggerText');
+      localStorage.removeItem('letterSpacing');
+      localStorage.removeItem('lineHeight');
+      localStorage.removeItem('grayscale');
+    }
+    
+    // Aplicar preferências salvas ao carregar a página
+    window.addEventListener('DOMContentLoaded', function() {
+      if (localStorage.getItem('highContrast') === 'true') document.body.classList.add('high-contrast');
+      if (localStorage.getItem('invertedColors') === 'true') document.body.classList.add('inverted-colors');
+      if (localStorage.getItem('biggerText') === 'true') document.body.classList.add('bigger-text');
+      if (localStorage.getItem('letterSpacing') === 'true') document.body.classList.add('letter-spacing');
+      if (localStorage.getItem('lineHeight') === 'true') document.body.classList.add('line-height');
+      if (localStorage.getItem('grayscale') === 'true') document.body.classList.add('grayscale');
+    });
+  </script>
+</body>
+</html>
